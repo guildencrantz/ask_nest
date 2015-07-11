@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+
+	"github.com/otherinbox/gobuild"
 )
 
 type Session struct {
@@ -24,6 +26,10 @@ type Request struct {
 type Event struct {
 	Session Session `json:"session"`
 	Request Request `json:"request"`
+}
+
+func Version() string {
+	return gobuild.Version
 }
 
 func main() {

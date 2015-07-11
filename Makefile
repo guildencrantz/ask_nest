@@ -6,7 +6,7 @@ build: ask_nest
 
 ask_nest: ask_nest.go
 	go test
-	go build
+	go build -ldflags "-X github.com/otherinbox/gobuild.BuildDate '$$(date)' -X github.com/otherinbox/gobuild.Version '$$(git rev-parse HEAD)'"
 
 ask_nest.zip: ask_nest index.js
 	zip ask_nest.zip -xi ask_nest index.js
