@@ -14,7 +14,7 @@ ask_nest.zip: ask_nest index.js
 package: ask_nest.zip
 
 install: ask_nest.zip
-	aws lambda update-function-code --function-name ask_nest --zip-file fileb://ask_nest.zip
+	aws lambda update-function-code --function-name ask_nest --zip-file fileb://ask_nest.zip --publish
 
 clean:
 	rm ask_nest
