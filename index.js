@@ -10,6 +10,10 @@ exports.handler = function(event, context) {
 		stdout += buf;
 	});
 
+	proc.stderr.on('data', function(buf) {
+		console.log(buf.toString());
+	});
+
   proc.on('close', function(code){
     if(code !== 0) {
       return context.done(new Error("Process exited with non-zero status code"));
