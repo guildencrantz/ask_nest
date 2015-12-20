@@ -13,7 +13,7 @@
       "slots": [
         {
           "name": "Temperature",
-          "type": "NUMBER"
+          "type": "AMAZON.NUMBER"
         }
       ]
     },
@@ -22,7 +22,7 @@
       "slots": [
         {
           "name": "Presence",
-          "type": "LITERAL"
+          "type": "PRESENCE"
         }
       ]
     }

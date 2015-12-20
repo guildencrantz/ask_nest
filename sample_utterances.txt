@@ -15,18 +15,18 @@ StatusIntent what's the status
 StatusIntent what do you know
 StatusIntent how are things
 StatusIntent what's up
-SetTempIntent set temp {70|Temperature}
-SetTempIntent set temperature {82|Temperature}
-SetTempIntent temp {62|Temperature}
-SetTempIntent set {69|Temperature}
-SetTempIntent {72|Temperature}
-SetPresenceIntent set {home|Presence}
-SetPresenceIntent set {away|Presence}
-SetPresenceIntent set me {home|Presence}
-SetPresenceIntent set me {away|Presence}
-SetPresenceIntent I'm {home|Presence}
-SetPresenceIntent I'm {away|Presence}
-SetPresenceIntent I'm {leaving|Presence}
-SetPresenceIntent I am {home|Presence}
-SetPresenceIntent I am {away|Presence}
-SetPresenceIntent I am {leaving|Presence}
+SetTempIntent set temp {Temperature}
+SetTempIntent set temperature {Temperature}
+SetTempIntent temp {Temperature}
+SetTempIntent set {Temperature}
+SetTempIntent {Temperature}
+SetPresenceIntent set {Presence}
+SetPresenceIntent set {Presence}
+SetPresenceIntent set me {Presence}
+SetPresenceIntent set me {Presence}
+SetPresenceIntent I'm {Presence}
+SetPresenceIntent I'm {Presence}
+SetPresenceIntent I'm {Presence}
+SetPresenceIntent I am {Presence}
+SetPresenceIntent I am {Presence}
+SetPresenceIntent I am {Presence}
