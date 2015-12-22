@@ -15,8 +15,12 @@ StatusIntent what's the status
 StatusIntent what do you know
 StatusIntent how are things
 StatusIntent what's up
+StatusIntent what's the current temperature
+StatusIntent what temperature is it
 SetTempIntent set temp {Temperature}
 SetTempIntent set temperature {Temperature}
+SetTempIntent set temperature to {Temperature}
+SetTempIntent set the temperature to {Temperature}
 SetTempIntent temp {Temperature}
 SetTempIntent set {Temperature}
 SetTempIntent {Temperature}
