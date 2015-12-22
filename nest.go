@@ -5,8 +5,8 @@ import (
 	"io/ioutil"
 	"os"
 
-	"code.google.com/p/go-uuid/uuid"
 	"github.com/jsgoecke/nest"
+	"github.com/pborman/uuid"
 	"gopkg.in/yaml.v2"
 )
 
