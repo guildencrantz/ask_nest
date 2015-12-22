@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"strconv"
 
 	"github.com/otherinbox/gobuild"
 )
@@ -23,8 +24,8 @@ type Session struct {
 }
 
 type Intent struct {
-	Name  string                            `json:"name"`
-	Slots map[string]map[string]interface{} `json:"slots"`
+	Name  string                       `json:"name"`
+	Slots map[string]map[string]string `json:"slots"`
 }
 
 type Request struct {
@@ -96,17 +97,60 @@ func Help() Return {
 }
 
 func Status() Return {
+	r := fmt.Sprintf("The current temperature is %d", thermostat.AmbientTemperatureF)
 	return NewReturn(
 		nil,
-		NewResponse("Status", "Status", "", ""),
+		NewResponse(
+			r,
+			"Status",
+			r,
+			"",
+		),
 		true,
 	)
 }
 
 func SetTemp(i Intent) Return {
+	// This wouldn't work if I used nest.HeatCool
+	ct := thermostat.TargetTemperatureF
+	// TODO: Create an error response condition.
+	tt, _ := strconv.Atoi(i.Slots["Temperature"]["value"])
+
+	if tt == ct {
+		r := fmt.Sprintf("You requested the target temperature be set to %d, but that's already the target temperature.", tt)
+		return NewReturn(nil, NewResponse(r, "Target Temperature not changed.", r, ""), true)
+	}
+
+	// Need that error response stuff here too.
+	thermostat.SetTargetTempF(tt)
+
+	a := thermostat.AmbientTemperatureF
+	h := thermostat.HvacMode
+
+	fmt.Fprintf(os.Stderr, "h: %#v", h)
+
+	var r string
+	if a == tt {
+		r = fmt.Sprintf("Holding temperature at %d", tt)
+	} else if a > tt {
+		switch h {
+		case "heat":
+			r = fmt.Sprintf("Will allow temperature to drop from %d to %d", a, tt)
+		default:
+			r = fmt.Sprintf("Cooling from %d to %d", a, tt)
+		}
+	} else {
+		switch h {
+		case "heat":
+			r = fmt.Sprintf("Heating from %d to %d", a, tt)
+		default:
+			r = fmt.Sprintf("Will allow temperature to rise from %d to %d", a, tt)
+		}
+	}
+
 	return NewReturn(
 		nil,
-		NewResponse("Set Temp", "Set Temp", "", ""),
+		NewResponse(r, "Set Temperature", r, ""),
 		true,
 	)
 }
